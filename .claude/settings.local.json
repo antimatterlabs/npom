@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_in_Chrome__computer",
+      "mcp__Claude_in_Chrome__javascript_tool",
+      "Bash(python3 .claude/skills/ui-ux-pro-max/scripts/search.py \"strong masculine bold sturdy industrial grounded heritage\" --domain typography)",
+      "Bash(perl -0pi -e 's/lg:text-7xl font-medium/lg:text-7xl font-bold/g; s/md:text-6xl font-medium/md:text-6xl font-bold/g; s/lg:text-\\\\[5\\\\.25rem\\\\] font-medium/lg:text-[5.25rem] font-bold/g; s/text-3xl md:text-4xl font-medium leading-snug/text-3xl md:text-4xl font-semibold leading-snug/g' index.html)",
+      "Bash(sed -i '' 's/color:#1B3A2D;/color:#0A0A0A;/g' index.html)",
+      "Bash(sed -i '' 's/background:#1B3A2D;/background:#0A0A0A;/g' index.html)",
+      "Bash(sed -i '' 's/rgba\\(27,58,45,/rgba\\(0,0,0,/g' index.html)",
+      "Bash(sed -i '' 's/rgba\\(27, 58, 45,/rgba\\(0,0,0,/g' index.html)",
+      "Bash(sed -i '' \"s/color: '#1B3A2D'/color: '#0A0A0A'/g\" index.html)",
+      "Bash(sed -i '' 's/text-5xl sm:text-6xl md:text-7xl lg:text-\\\\[5.25rem\\\\]/text-4xl sm:text-5xl md:text-6xl lg:text-[4rem]/g' index.html)",
+      "Bash(sed -i '' 's/text-5xl md:text-6xl lg:text-7xl/text-3xl md:text-4xl lg:text-5xl/g' index.html)",
+      "Bash(sed -i '' 's/text-5xl md:text-7xl lg:text-8xl/text-4xl md:text-5xl lg:text-6xl/g' index.html)",
+      "Bash(sed -i '' 's/text-5xl md:text-6xl/text-3xl md:text-4xl/g' index.html)",
+      "Bash(sed -i '' 's/text-3xl md:text-4xl font-semibold/text-2xl md:text-3xl font-semibold/g' index.html)",
+      "mcp__Claude_in_Chrome__browser_batch",
+      "Bash(sed -i '' -E 's/border-radius:[[:space:]]*[^;}]*;/border-radius:0;/g' index.html)",
+      "Bash(sed -i '' -E 's/rounded-\\\\[[^]]*\\\\]//g' index.html)",
+      "Bash(sed -i '' -E 's/\\(^|[\" ]\\)\\(sm:|md:|lg:|xl:\\)?rounded\\(-\\(t|b|l|r|tl|tr|bl|br\\)\\)?\\(-\\(full|none|sm|md|lg|xl|2xl|3xl\\)\\)?/\\\\1/g' index.html)",
+      "Bash(mkdir -p /Applications/MAMP/htdocs/npom/.claude)"
+    ]
+  }
+}
