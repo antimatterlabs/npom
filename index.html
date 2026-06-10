@@ -81,7 +81,6 @@
     :focus-visible {
       outline: 3px solid #e8a43d;
       outline-offset: 3px;
-      border-radius: 0;
     }
 
     h1,
@@ -148,30 +147,51 @@
       z-index: 100;
       transition: background 0.35s, box-shadow 0.35s, padding 0.35s;
       padding: 1.25rem 0;
-      background: transparent;
+      background: #ffffff;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
     }
 
     /* Navbar logo sizing before and after scroll */
     .nav-logo {
-      height: 4.5rem;
-      width: auto;
-      transition: height 0.35s ease-in-out;
+      position: absolute;
+      top: -0.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 9.5rem;
+      width: 9.5rem;
+      z-index: 150;
+      transition: height 0.35s ease-in-out, top 0.35s ease-in-out, width 0.35s ease-in-out;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.12));
     }
 
     @media (max-width: 768px) {
       .nav-logo {
-        height: 3.5rem;
+        height: 7.5rem;
+        width: 7.5rem;
+        top: -0.4rem;
       }
     }
 
     #navbar.scrolled .nav-logo {
-      height: 3rem;
+      height: 7.5rem;
+      width: 7.5rem;
+      top: -0.4rem;
+    }
+
+    @media (max-width: 768px) {
+      #navbar.scrolled .nav-logo {
+        height: 5.5rem;
+        width: 5.5rem;
+        top: -0.3rem;
+      }
     }
 
     #navbar.scrolled {
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(14px);
+      background: #ffffff;
+      backdrop-filter: none;
       border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       padding: 0.8rem 0;
     }
 
@@ -215,11 +235,13 @@
       justify-content: center;
       gap: .55rem;
       font-weight: 600;
-      border-radius: 0;
+      border-radius: 9999px;
+      /* Rounded pill style */
       transition: all .2s ease;
       cursor: pointer;
       min-height: 52px;
-      padding: 0 1.9rem;
+      padding: 0 2.2rem;
+      /* Adjusted for better pill shape proportion */
       font-size: .98rem;
     }
 
@@ -241,6 +263,27 @@
     .btn-gold:hover {
       background: #793518;
       color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .btn-primary-hero {
+      background: #78574d;
+      color: #fff;
+    }
+
+    .btn-primary-hero:hover {
+      background: #61443c;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary-hero {
+      border: 2px solid #ffffff;
+      color: #ffffff;
+      background: transparent;
+    }
+
+    .btn-secondary-hero:hover {
+      background: rgba(255, 255, 255, 0.15);
       transform: translateY(-1px);
     }
 
@@ -337,6 +380,10 @@
 
     .accordion-item:not(.open) .accordion-panel {
       opacity: 0;
+    }
+
+    .accordion-icon {
+      border-radius: 9999px;
     }
 
     .accordion-item.open .accordion-icon {
@@ -492,14 +539,15 @@
   <!-- ═══════════════ NAVBAR ═══════════════ -->
   <header id="navbar" role="banner">
     <nav class="max-w-7xl mx-auto px-6 flex items-center justify-between" aria-label="Main navigation">
-      <a href="#" class="flex items-center" aria-label="North Preston Outreach Ministry Home">
+      <a href="#" class="flex items-center relative" aria-label="North Preston Outreach Ministry Home"
+        style="width: 9.5rem; height: 3.5rem;">
         <img src="npom-logo.png" alt="North Preston Outreach Ministry Logo" class="nav-logo" />
       </a>
 
       <ul class="hidden md:flex items-center gap-1 list-none" role="list">
-        <li><a href="#why"
-            class="nav-link px-4 py-2  text-sm font-semibold transition-colors duration-200 cursor-pointer">Why We
-            Exist</a></li>
+        <li><a href="#legacy"
+            class="nav-link px-4 py-2  text-sm font-semibold transition-colors duration-200 cursor-pointer">Our
+            Legacy</a></li>
         <li><a href="#trust"
             class="nav-link px-4 py-2  text-sm font-semibold transition-colors duration-200 cursor-pointer">Public
             Trust</a></li>
@@ -529,9 +577,9 @@
     <div id="mobile-menu" class="md:hidden mt-3 mx-4  overflow-hidden"
       style="background:#fff; border:1px solid #EAEAEA;" role="navigation" aria-label="Mobile navigation">
       <ul class="px-4 py-3 space-y-1 list-none" role="list">
-        <li><a href="#why"
+        <li><a href="#legacy"
             class="block px-3 py-2.5  text-sm font-semibold transition-colors duration-200 cursor-pointer"
-            style="color:#1A1A1A;">Why We Exist</a></li>
+            style="color:#1A1A1A;">Our Legacy</a></li>
         <li><a href="#trust"
             class="block px-3 py-2.5  text-sm font-semibold transition-colors duration-200 cursor-pointer"
             style="color:#1A1A1A;">Public Trust</a></li>
@@ -552,40 +600,43 @@
     <section class="relative min-h-screen flex items-center pt-28 pb-16 overflow-hidden" aria-labelledby="hero-heading">
       <!-- Full-Width Background Image -->
       <div class="absolute inset-0 z-0">
-        <img src="hero.jpg" alt="North Preston Outreach Ministry Community Vision"
+        <img src="npom-north-preston-hero-image.jpg" alt="North Preston Outreach Ministry Community Vision"
           class="w-full h-full object-cover object-center" loading="eager" />
-        <!-- Soft, editorial gradient overlay for readability -->
+        <!-- Soft, dark warm gradient overlay for readability and contrast with white button/text -->
         <div class="absolute inset-0"
-          style="background: linear-gradient(to right, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.8) 35%, rgba(255, 255, 255, 0) 70%);">
+          style="background: linear-gradient(to right, rgba(20, 16, 14, 0.95) 0%, rgba(20, 16, 14, 0.75) 45%, rgba(20, 16, 14, 0.1) 100%);">
         </div>
+        <!-- Protruding absolute positioned brand tag image on bottom right -->
+        <img src="npom-tag.png" alt="North Preston Outreach Ministry Tag"
+          class="absolute bottom-8 right-8 w-64 md:w-96 h-auto pointer-events-none opacity-70 z-10" />
       </div>
 
       <div class="max-w-7xl mx-auto w-full px-6 relative z-10">
         <!-- Left Column: Copy -->
-        <div class="max-w-2xl flex flex-col justify-center">
-          <span class="fade-up inline-block text-sm font-semibold text-[#793518] tracking-wide mb-4">
-            North Preston Outreach Ministry
-          </span>
+        <div class="max-w-4xl flex flex-col justify-center">
+          <div
+            class="fade-up inline-block bg-[#e8a43d] text-[#2C2520] px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-6 max-w-max">
+            Purpose-Driven Community
+          </div>
           <h1 id="hero-heading"
-            class="fade-up font-heading text-4xl sm:text-5xl lg:text-6xl font-black leading-[0.96] mb-6 text-[#2C2520]">
-            Built for the<br />community,<br />
-            <span class="hl-skew text-[#793518]">by the community.</span>
+            class="fade-up font-heading text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.08] mb-6 text-white tracking-tight">
+            Nurturing a purposeful future. By building communities <span class="text-[#e8a43d] italic">together.</span>
           </h1>
 
-          <p class="fade-up text-lg sm:text-xl mb-8 leading-relaxed max-w-xl text-zinc-800">
+          <p class="fade-up text-lg sm:text-xl mb-8 leading-relaxed max-w-xl text-white/80">
             A housing future that keeps North Preston together, so everyone can remain close to home, culture, church,
             and community.
           </p>
 
           <div class="fade-up flex flex-col sm:flex-row gap-4">
-            <a href="#involve" class="group btn btn-gold">
+            <a href="#involve" class="group btn btn-primary-hero">
               Join the email list
               <svg class="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" fill="none"
                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </a>
-            <a href="#why" class="btn btn-outline">Read about the project</a>
+            <a href="#legacy" class="btn btn-secondary-hero">Read about the project</a>
           </div>
         </div>
       </div>
@@ -593,92 +644,7 @@
 
 
     <!-- ═══════════════ WHY WE EXIST ═══════════════ -->
-    <section id="why" class="py-24 md:py-32 px-6 bg-white" aria-labelledby="why-heading">
-      <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-        <!-- Left image -->
-        <div class="fade-up relative">
-          <div class=" overflow-hidden img-zoom" style="height:clamp(340px,42vw,520px);">
-            <img src="community_group.jpg" alt="Community members gathered together in conversation" loading="lazy" />
-          </div>
-        </div>
-
-        <!-- Right copy + checks -->
-        <div class="fade-up">
-          <h2 id="why-heading" class="font-heading text-4xl md:text-5xl font-extrabold mb-6" style="color:#0A0A0A;">
-            Housing is more than <span class="hl">a building.</span>
-          </h2>
-          <p class="text-lg leading-relaxed mb-8" style="color:#52525B;">
-            For many families, housing is not just about rent. It is about staying close to parents, grandparents,
-            church, culture, school, transit, and community support. NPOM exists to create affordable, accessible,
-            suitable, and assisted housing in North Preston — for the community, by the community.
-          </p>
-
-          <p class="text-sm font-semibold text-[#793518] tracking-wide mb-3">Who it serves</p>
-          <p class="text-lg font-extrabold text-black mb-6 leading-snug">
-            Designed for single mothers, seniors, students, families, and Preston residents who need safe, suitable,
-            affordable housing close to home.
-          </p>
-          <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-4 mb-8" role="list">
-            <li class="check-li">
-              <span class="check-ic">
-                <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  stroke-width="3.2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-              </span>
-              <span class="text-base font-bold text-zinc-900">Single mothers</span>
-            </li>
-            <li class="check-li">
-              <span class="check-ic">
-                <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  stroke-width="3.2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-              </span>
-              <span class="text-base font-bold text-zinc-900">Seniors &amp; elders</span>
-            </li>
-            <li class="check-li">
-              <span class="check-ic">
-                <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  stroke-width="3.2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-              </span>
-              <span class="text-base font-bold text-zinc-900">Students</span>
-            </li>
-            <li class="check-li">
-              <span class="check-ic">
-                <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  stroke-width="3.2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-              </span>
-              <span class="text-base font-bold text-zinc-900">Families</span>
-            </li>
-            <li class="check-li">
-              <span class="check-ic">
-                <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  stroke-width="3.2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-              </span>
-              <span class="text-base font-bold text-zinc-900">Preston residents in need</span>
-            </li>
-            <li class="check-li">
-              <span class="check-ic">
-                <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  stroke-width="3.2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-              </span>
-              <span class="text-base font-bold text-zinc-900">Future generations</span>
-            </li>
-          </ul>
-
-        </div>
-      </div>
-    </section>
 
     <!-- ═══════════════ OUR COMMUNITY & STORIES ═══════════════ -->
     <section id="legacy" class="py-24 md:py-32 px-6 bg-[#F8F8F6] border-t border-zinc-200"
@@ -688,7 +654,7 @@
         <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-20 items-center mb-16">
           <div class="fade-up">
             <h2 id="legacy-heading" class="font-heading text-4xl md:text-5xl font-extrabold mb-6 text-[#0A0A0A]">
-              Rooted in Legacy. <br /><span class="hl-skew">Proud of Place.</span>
+              Rooted in Legacy. <br /><span class="hl-skew">Proud of Home.</span>
             </h2>
             <p class="text-lg leading-relaxed mb-6 text-zinc-650">
               Established in the late 1700s, North Preston is Canada's oldest and largest land-settled Black community.
@@ -731,28 +697,28 @@
 
         <!-- Middle: Resident Voices quotes -->
         <div class="grid md:grid-cols-2 gap-8 mb-20">
-          <div class="fade-up p-8 shadow-sm flex flex-col justify-between" style="background-color: #e8a43d;">
-            <blockquote class="text-base italic text-[#2C2520] font-medium leading-relaxed mb-6">
+          <div class="fade-up p-8 shadow-sm flex flex-col justify-between text-white" style="background-color: #78574d;">
+            <blockquote class="text-base italic text-white font-medium leading-relaxed mb-6">
               "I want my grandchildren to grow up here, hear the same church bells, and walk the same streets I did.
               This project means we don't have to say goodbye to our family."
             </blockquote>
             <div class="flex items-center gap-4">
               <div>
-                <cite class="not-italic font-extrabold text-[#2C2520] block text-sm">Evelyn S.</cite>
-                <span class="text-xs text-[#2C2520]/80 font-semibold">Lifelong Resident & Grandmother</span>
+                <cite class="not-italic font-extrabold text-white block text-lg">Evelyn S.</cite>
+                <span class="text-sm text-white/90 font-semibold block mt-1">Lifelong Resident & Grandmother</span>
               </div>
             </div>
           </div>
 
-          <div class="fade-up p-8 shadow-sm flex flex-col justify-between" style="background-color: #e8a43d;">
-            <blockquote class="text-base italic text-[#2C2520] font-medium leading-relaxed mb-6">
+          <div class="fade-up p-8 shadow-sm flex flex-col justify-between text-white" style="background-color: #78574d;">
+            <blockquote class="text-base italic text-white font-medium leading-relaxed mb-6">
               "Staying in North Preston is about staying connected to our support system. Having affordable housing here
               means our community can continue to thrive, not scatter."
             </blockquote>
             <div class="flex items-center gap-4">
               <div>
-                <cite class="not-italic font-extrabold text-[#2C2520] block text-sm">Marcus D.</cite>
-                <span class="text-xs text-[#2C2520]/80 font-semibold">Young Father & Resident</span>
+                <cite class="not-italic font-extrabold text-white block text-lg">Marcus D.</cite>
+                <span class="text-sm text-white/90 font-semibold block mt-1">Young Father & Resident</span>
               </div>
             </div>
           </div>
@@ -833,7 +799,7 @@
           </div>
           <div class="fade-up relative">
             <div class="overflow-hidden shadow-lg border border-zinc-200" style="height:clamp(260px,32vw,400px);">
-              <img src="all_levels_of_government.jpg"
+              <img src="NPOM-with-all-3-Levels-of-Government-April-17-2026.jpg"
                 alt="NPOM representatives collaborating with municipal, provincial, and federal officials"
                 class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy" />
             </div>
@@ -1552,9 +1518,9 @@
         <nav aria-label="Footer navigation">
           <p class="text-sm font-semibold text-zinc-500 mb-4">Explore</p>
           <ul class="space-y-3 list-none" role="list">
-            <li><a href="#why"
-                class="text-sm text-zinc-600 hover:text-[#793518] transition-colors duration-200 cursor-pointer">Why We
-                Exist</a></li>
+            <li><a href="#legacy"
+                class="text-sm text-zinc-600 hover:text-[#793518] transition-colors duration-200 cursor-pointer">Our
+                Legacy</a></li>
             <li><a href="#trust"
                 class="text-sm text-zinc-600 hover:text-[#793518] transition-colors duration-200 cursor-pointer">Public
                 Trust</a></li>
