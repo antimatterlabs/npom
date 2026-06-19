@@ -57,8 +57,7 @@ try {
         . "Name: {$name}\n"
         . "Email: {$email}\n"
         . "Interest: {$interestLabel}\n\n"
-        . "Message:\n{$message}\n\n"
-        . 'Stored locally in contact_messages ID: ' . $contactId,
+        . "Message:\n{$message}\n\n",
         $email
     );
 

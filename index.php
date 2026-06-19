@@ -7,6 +7,8 @@
   <title>NPOM — North Preston Outreach Ministry</title>
   <meta name="description"
     content="North Preston Outreach Ministry is working toward affordable, accessible, suitable, and assisted housing for Preston residents." />
+  <link rel="icon" type="image/png" href="npom-logo.png" />
+  <link rel="apple-touch-icon" href="npom-logo.png" />
 
   <style>
     .skip-link {
@@ -1898,8 +1900,10 @@
         </div>
       </div>
       <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p class="text-xs text-zinc-500">© 2026 North Preston Outreach Ministry. All Rights Reserved.</p>
-        <p class="text-xs text-zinc-400">North Preston, Nova Scotia, Canada</p>
+        <p class="text-xs text-zinc-500">© 2026 North Preston Outreach Ministry. All Rights Reserved. North Preston,
+          Nova Scotia, Canada.</p>
+        <p class="text-xs text-zinc-400">Powered by <a href="https://antimatterlabs.ca" target="_blank" rel="noopener"
+            class="font-semibold text-[#793518] hover:text-black transition-colors">Antimatter Creative Labs</a>.</p>
       </div>
     </div>
   </footer>
