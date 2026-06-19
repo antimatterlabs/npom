@@ -7,8 +7,10 @@
   <title>NPOM — North Preston Outreach Ministry</title>
   <meta name="description"
     content="North Preston Outreach Ministry is working toward affordable, accessible, suitable, and assisted housing for Preston residents." />
-  <link rel="icon" type="image/png" href="npom-logo.png" />
-  <link rel="apple-touch-icon" href="npom-logo.png" />
+  <link rel="icon" href="favicon.ico?v=2" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=2" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png?v=2" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=2" />
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2JGKXPJVE6"></script>
 <script>
