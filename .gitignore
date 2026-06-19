@@ -1,0 +1,9 @@
+api/config.php
+storage/*.sqlite
+storage/*.sqlite-shm
+storage/*.sqlite-wal
+storage/*.db
+storage/*.db-shm
+storage/*.db-wal
+.env
+
