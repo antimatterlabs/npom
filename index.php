@@ -9,7 +9,15 @@
     content="North Preston Outreach Ministry is working toward affordable, accessible, suitable, and assisted housing for Preston residents." />
   <link rel="icon" type="image/png" href="npom-logo.png" />
   <link rel="apple-touch-icon" href="npom-logo.png" />
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2JGKXPJVE6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-2JGKXPJVE6');
+</script>
   <style>
     .skip-link {
       position: absolute;
@@ -1769,6 +1777,7 @@
             <div class="hidden" aria-hidden="true">
               <label for="contact-website">Website</label>
               <input type="text" id="contact-website" name="website" tabindex="-1" autocomplete="off" />
+              <input type="hidden" name="form_rendered_at" class="form-rendered-at" value="" />
             </div>
             <div class="mb-5">
               <label for="name" class="block text-sm font-bold mb-2" style="color:#FFFFFF;">Name</label>
@@ -1854,6 +1863,7 @@
           <p class="text-sm font-semibold text-zinc-500 mb-3">Get Updates</p>
           <form id="footer-subscribe-form" class="flex gap-2 max-w-sm" onsubmit="handleFooterSubscribe(event)">
             <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+            <input type="hidden" name="form_rendered_at" class="form-rendered-at" value="" />
             <input type="email" id="footer-email" name="email" required placeholder="your.email@domain.com"
               aria-label="Email address"
               class="flex-1 px-4 py-3 text-sm bg-white border border-zinc-300 text-zinc-800 outline-none transition-colors focus:border-[#793518]" />
@@ -1963,6 +1973,13 @@
       return payload;
     }
 
+    function refreshFormRenderedAt(form = document) {
+      const timestamp = Math.floor(Date.now() / 1000).toString();
+      form.querySelectorAll('.form-rendered-at').forEach(input => {
+        input.value = timestamp;
+      });
+    }
+
     async function handleFormSubmit(e) {
       e.preventDefault();
 
@@ -1982,6 +1999,7 @@
         success.textContent = payload.message || 'Thank you! We’ll be in touch soon.';
         success.classList.remove('hidden');
         form.reset();
+        refreshFormRenderedAt(form);
       } catch (err) {
         error.textContent = err.message;
         error.classList.remove('hidden');
@@ -2010,6 +2028,7 @@
         success.textContent = payload.message || 'Thanks, you’re on the list.';
         success.classList.remove('hidden');
         form.reset();
+        refreshFormRenderedAt(form);
       } catch (err) {
         error.textContent = err.message;
         error.classList.remove('hidden');
@@ -2018,6 +2037,8 @@
         button.textContent = originalText;
       }
     }
+
+    refreshFormRenderedAt();
 
     /* ──────────────── ACCORDION ──────────────── */
     (function () {

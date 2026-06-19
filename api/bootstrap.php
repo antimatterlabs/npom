@@ -121,6 +121,23 @@ function npom_check_honeypot(array $data): void
     }
 }
 
+function npom_check_submit_time(array $data): void
+{
+    $config = npom_config()['spam'] ?? [];
+    $minimumSeconds = (int) ($config['minimum_seconds'] ?? 0);
+
+    if ($minimumSeconds <= 0) {
+        return;
+    }
+
+    $renderedAt = (int) ($data['form_rendered_at'] ?? 0);
+    $now = time();
+
+    if ($renderedAt <= 0 || $renderedAt > $now || ($now - $renderedAt) < $minimumSeconds) {
+        npom_error_response('Please wait a moment and try again.', 429);
+    }
+}
+
 function npom_client_ip_hash(): string
 {
     $ip = $_SERVER['REMOTE_ADDR'] ?? '';
@@ -218,6 +235,16 @@ function npom_migrate(PDO $pdo, string $driver): void
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
         );
 
+        $pdo->exec(
+            "CREATE TABLE IF NOT EXISTS form_attempts (
+                id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                form_key VARCHAR(80) NOT NULL,
+                ip_hash CHAR(64) NOT NULL,
+                created_at DATETIME NOT NULL,
+                INDEX idx_form_attempts_lookup (form_key, ip_hash, created_at)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
+        );
+
         return;
     }
 
@@ -248,6 +275,20 @@ function npom_migrate(PDO $pdo, string $driver): void
             mailgun_response TEXT,
             created_at TEXT NOT NULL
         )"
+    );
+
+    $pdo->exec(
+        "CREATE TABLE IF NOT EXISTS form_attempts (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            form_key TEXT NOT NULL,
+            ip_hash TEXT NOT NULL,
+            created_at TEXT NOT NULL
+        )"
+    );
+
+    $pdo->exec(
+        "CREATE INDEX IF NOT EXISTS idx_form_attempts_lookup
+         ON form_attempts (form_key, ip_hash, created_at)"
     );
 }
 
@@ -342,6 +383,57 @@ function npom_update_contact_mailgun(PDO $pdo, int $id, string $status, string $
         'response' => mb_substr($response, 0, 5000),
         'id' => $id,
     ]);
+}
+
+function npom_check_rate_limit(PDO $pdo, string $formKey, int $limit, int $windowSeconds): void
+{
+    if ($limit <= 0 || $windowSeconds <= 0) {
+        return;
+    }
+
+    $ipHash = npom_client_ip_hash();
+    $now = time();
+    $windowStart = gmdate('Y-m-d H:i:s', $now - $windowSeconds);
+    $createdAt = gmdate('Y-m-d H:i:s', $now);
+
+    $delete = $pdo->prepare('DELETE FROM form_attempts WHERE created_at < :window_start');
+    $delete->execute(['window_start' => $windowStart]);
+
+    $count = $pdo->prepare(
+        'SELECT COUNT(*) FROM form_attempts
+         WHERE form_key = :form_key AND ip_hash = :ip_hash AND created_at >= :window_start'
+    );
+    $count->execute([
+        'form_key' => $formKey,
+        'ip_hash' => $ipHash,
+        'window_start' => $windowStart,
+    ]);
+
+    if ((int) $count->fetchColumn() >= $limit) {
+        npom_error_response('Too many attempts. Please try again later.', 429);
+    }
+
+    $insert = $pdo->prepare(
+        'INSERT INTO form_attempts (form_key, ip_hash, created_at)
+         VALUES (:form_key, :ip_hash, :created_at)'
+    );
+    $insert->execute([
+        'form_key' => $formKey,
+        'ip_hash' => $ipHash,
+        'created_at' => $createdAt,
+    ]);
+}
+
+function npom_apply_spam_protection(PDO $pdo, array $data, string $formKey): void
+{
+    npom_check_submit_time($data);
+
+    $config = npom_config()['spam'] ?? [];
+    $limitKey = $formKey === 'contact' ? 'contact_limit' : 'subscribe_limit';
+    $limit = (int) ($config[$limitKey] ?? 0);
+    $windowSeconds = (int) ($config['window_seconds'] ?? 0);
+
+    npom_check_rate_limit($pdo, $formKey, $limit, $windowSeconds);
 }
 
 function npom_mailgun_configured(): bool

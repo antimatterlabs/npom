@@ -32,6 +32,8 @@ try {
     }
 
     $pdo = npom_db();
+    npom_apply_spam_protection($pdo, $data, 'contact');
+
     $contactId = npom_insert_contact($pdo, [
         'name' => $name,
         'email' => $email,

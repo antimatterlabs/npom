@@ -16,6 +16,8 @@ try {
     }
 
     $pdo = npom_db();
+    npom_apply_spam_protection($pdo, $data, 'subscribe');
+
     if (npom_subscriber_exists($pdo, $email)) {
         npom_error_response('That email is already on the list.', 409);
     }

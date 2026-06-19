@@ -40,4 +40,11 @@ return [
         'password_hash' => '',
         'session_name' => 'npom_admin',
     ],
+
+    'spam' => [
+        'minimum_seconds' => 3,
+        'subscribe_limit' => 5,
+        'contact_limit' => 3,
+        'window_seconds' => 3600,
+    ],
 ];

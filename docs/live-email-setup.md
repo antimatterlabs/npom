@@ -146,7 +146,28 @@ After login, the admin screen shows:
 
 Use a strong password and do not commit `api/config.php`.
 
-## 6. Test live
+## 6. Spam reduction settings
+
+The forms use three lightweight spam controls:
+
+- hidden honeypot field
+- minimum submit time
+- per-IP rate limits using hashed IPs
+
+Defaults live in `api/config.example.php`:
+
+```php
+'spam' => [
+    'minimum_seconds' => 3,
+    'subscribe_limit' => 5,
+    'contact_limit' => 3,
+    'window_seconds' => 3600,
+],
+```
+
+You can override these in `api/config.php`. Set a limit to `0` to disable that rate limit.
+
+## 7. Test live
 
 Submit the footer email form and the main contact form.
 
@@ -161,7 +182,7 @@ sqlite3 /path/to/private/npom.sqlite 'select id,name,email,created_at from conta
 
 If the `sqlite3` command is not installed, use the protected `/admin/` export screen, a local copy of the database, or a PHP-based database viewer over SSH only. Do not add an unprotected public export endpoint.
 
-## 7. Mailgun notes
+## 8. Mailgun notes
 
 - The Mailgun API key must only live in `api/config.php`.
 - Do not put the API key in `index.html` or browser JavaScript.
@@ -169,7 +190,7 @@ If the `sqlite3` command is not installed, use the protected `/admin/` export sc
 - Contact messages are always stored locally first. Mailgun is used for notification email when configured.
 - If Mailgun is temporarily down, the local database still keeps the submission.
 
-## 8. Files that should not be committed or uploaded publicly
+## 9. Files that should not be committed or uploaded publicly
 
 - `api/config.php`
 - `storage/*.sqlite`
