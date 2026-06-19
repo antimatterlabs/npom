@@ -36,6 +36,7 @@ return [
     ],
 
     'admin' => [
+        'admin_pass' => '',
         'password_hash' => '',
         'session_name' => 'npom_admin',
     ],

@@ -127,10 +127,13 @@ Add the generated hash to `api/config.php`:
 
 ```php
 'admin' => [
+    'admin_pass' => 'npom_admin',
     'password_hash' => '$2y$10$example-generated-hash-goes-here',
     'session_name' => 'npom_admin',
 ],
 ```
+
+`admin_pass` is the admin login/username value. It exists so password managers can save a normal username/password pair. The actual secret is the password that generated `password_hash`.
 
 After login, the admin screen shows:
 

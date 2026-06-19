@@ -5,6 +5,7 @@ declare(strict_types=1);
 require dirname(__DIR__) . '/api/bootstrap.php';
 
 $config = npom_config()['admin'] ?? [];
+$adminPass = trim((string) ($config['admin_pass'] ?? ''));
 $passwordHash = trim((string) ($config['password_hash'] ?? ''));
 $sessionName = preg_replace('/[^a-zA-Z0-9_-]/', '', (string) ($config['session_name'] ?? 'npom_admin'));
 if ($sessionName === '') {
@@ -123,15 +124,18 @@ if (isset($_GET['logout'])) {
 }
 
 if ($configured && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $submittedAdminPass = trim((string) ($_POST['admin_pass'] ?? ''));
     $password = (string) ($_POST['password'] ?? '');
-    if (password_verify($password, $passwordHash)) {
+    $adminPassMatches = $adminPass === '' || hash_equals($adminPass, $submittedAdminPass);
+
+    if ($adminPassMatches && password_verify($password, $passwordHash)) {
         session_regenerate_id(true);
         $_SESSION['npom_admin_authenticated'] = true;
         header('Location: ./');
         exit;
     }
 
-    $error = 'That password did not work.';
+    $error = 'Those login details did not work.';
 }
 
 $pdo = null;
@@ -417,6 +421,10 @@ if ($configured && admin_is_authenticated()) {
           <p class="error"><?= admin_h($error) ?></p>
         <?php endif; ?>
         <form method="post" action="./">
+          <label for="admin_pass">Admin login</label>
+          <input id="admin_pass" name="admin_pass" type="text" required autocomplete="username"
+            value="<?= admin_h($adminPass) ?>" />
+          <div style="height:14px;"></div>
           <label for="password">Password</label>
           <input id="password" name="password" type="password" required autocomplete="current-password" />
           <div style="margin-top:14px;">
@@ -502,4 +510,3 @@ if ($configured && admin_is_authenticated()) {
   </main>
 </body>
 </html>
-

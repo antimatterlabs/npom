@@ -16,6 +16,10 @@ try {
     }
 
     $pdo = npom_db();
+    if (npom_subscriber_exists($pdo, $email)) {
+        npom_error_response('That email is already on the list.', 409);
+    }
+
     $subscriberId = npom_upsert_subscriber($pdo, $email, 'footer');
 
     $mailgun = npom_mailgun_subscribe($email);

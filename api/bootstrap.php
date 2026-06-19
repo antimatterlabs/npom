@@ -291,6 +291,14 @@ function npom_upsert_subscriber(PDO $pdo, string $email, string $source): int
     return (int) $pdo->lastInsertId();
 }
 
+function npom_subscriber_exists(PDO $pdo, string $email): bool
+{
+    $stmt = $pdo->prepare('SELECT 1 FROM subscribers WHERE email = :email LIMIT 1');
+    $stmt->execute(['email' => $email]);
+
+    return (bool) $stmt->fetchColumn();
+}
+
 function npom_update_subscriber_mailgun(PDO $pdo, int $id, string $status, string $response): void
 {
     $stmt = $pdo->prepare(
