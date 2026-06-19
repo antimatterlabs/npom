@@ -1852,7 +1852,7 @@
           <p class="text-sm font-semibold text-zinc-500 mb-3">Get Updates</p>
           <form id="footer-subscribe-form" class="flex gap-2 max-w-sm" onsubmit="handleFooterSubscribe(event)">
             <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
-            <input type="email" id="footer-email" required placeholder="your.email@domain.com"
+            <input type="email" id="footer-email" name="email" required placeholder="your.email@domain.com"
               aria-label="Email address"
               class="flex-1 px-4 py-3 text-sm bg-white border border-zinc-300 text-zinc-800 outline-none transition-colors focus:border-[#793518]" />
             <button type="submit" class="btn btn-violet flex-shrink-0" style="min-height:46px; padding:0 1.3rem;"
