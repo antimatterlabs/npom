@@ -43,7 +43,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
     rel="stylesheet" />
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -823,8 +823,8 @@
             Purpose-Driven Community
           </div>
           <h1 id="hero-heading"
-            class="fade-up font-heading text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.08] mb-6 text-white tracking-tight">
-            Nurturing a purposeful future. By building communities <span class="text-[#e8a43d] italic">together.</span>
+            class="fade-up font-heading text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.08] mb-6 text-white tracking-tight italic">
+            Building Housing.<br />Building Community.<br /><span class="text-[#e8a43d]">Building Legacy.</span>
           </h1>
 
           <p class="fade-up text-lg sm:text-xl mb-8 leading-relaxed max-w-xl text-white/80">
