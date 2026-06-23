@@ -542,6 +542,220 @@
       }
     }
 
+    #team {
+      scroll-margin-top: 6rem;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .team-card-button {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      border: 1px solid #E4E4E7;
+      text-align: left;
+      cursor: pointer;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .team-card-button:hover,
+    .team-card-button:focus-visible {
+      box-shadow: 0 14px 35px rgba(44, 37, 32, 0.12);
+    }
+
+    .team-card-image {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: #E7E5E4;
+    }
+
+    .team-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .team-card-copy {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 0.45rem;
+      min-height: 8.4rem;
+      padding: 1rem;
+    }
+
+    .team-card-name {
+      color: #0A0A0A;
+      font-family: 'Archivo', 'Arial Black', sans-serif;
+      font-size: 1.08rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    .team-card-role {
+      color: #793518;
+      font-size: 0.8rem;
+      font-weight: 800;
+      line-height: 1.35;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .team-card-cta {
+      margin-top: auto;
+      color: #52525B;
+      font-size: 0.86rem;
+      font-weight: 800;
+      line-height: 1.3;
+    }
+
+    .team-modal-open {
+      overflow: hidden;
+    }
+
+    .team-modal[hidden] {
+      display: none;
+    }
+
+    .team-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .team-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 10, 10, 0.72);
+      cursor: pointer;
+    }
+
+    .team-modal-panel {
+      position: relative;
+      width: min(100%, 58rem);
+      max-height: min(88vh, 48rem);
+      overflow: auto;
+      display: grid;
+      grid-template-columns: minmax(16rem, 0.85fr) minmax(0, 1.15fr);
+      background: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+    }
+
+    .team-modal-media {
+      min-height: 100%;
+      background: #E7E5E4;
+    }
+
+    .team-modal-media img {
+      width: 100%;
+      height: 100%;
+      min-height: 30rem;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .team-modal-copy {
+      padding: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    .team-modal-role {
+      margin-bottom: 0.8rem;
+      color: #793518;
+      font-size: 0.82rem;
+      font-weight: 900;
+      line-height: 1.35;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .team-modal-title {
+      margin-bottom: 1.25rem;
+      color: #0A0A0A;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .team-modal-bio {
+      color: #3F3F46;
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    .team-modal-close {
+      position: absolute;
+      top: 0.9rem;
+      right: 0.9rem;
+      width: 2.75rem;
+      height: 2.75rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #111111;
+      color: #fff;
+      border: 0;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      z-index: 2;
+    }
+
+    .team-modal-close:hover {
+      background: #793518;
+    }
+
+    .team-modal-close svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    @media (max-width: 1024px) {
+      .team-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .team-grid {
+        grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
+      }
+
+      .team-card-copy {
+        min-height: 8rem;
+        padding: 0.9rem;
+      }
+
+      .team-modal {
+        align-items: flex-end;
+        padding: 0;
+      }
+
+      .team-modal-panel {
+        width: 100%;
+        max-height: 92vh;
+        grid-template-columns: 1fr;
+      }
+
+      .team-modal-media img {
+        height: 20rem;
+        min-height: 20rem;
+      }
+    }
+
     .partner-list {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
@@ -752,6 +966,9 @@
         <li><a href="#legacy"
             class="nav-link px-4 py-2  text-sm font-semibold transition-colors duration-200 cursor-pointer">Our
             Legacy</a></li>
+        <li><a href="#team"
+            class="nav-link px-4 py-2  text-sm font-semibold transition-colors duration-200 cursor-pointer">Team</a>
+        </li>
         <li><a href="#trust"
             class="nav-link px-4 py-2  text-sm font-semibold transition-colors duration-200 cursor-pointer">Public
             Trust</a></li>
@@ -784,6 +1001,9 @@
         <li><a href="#legacy"
             class="block px-3 py-2.5  text-sm font-semibold transition-colors duration-200 cursor-pointer"
             style="color:#1A1A1A;">Our Legacy</a></li>
+        <li><a href="#team"
+            class="block px-3 py-2.5  text-sm font-semibold transition-colors duration-200 cursor-pointer"
+            style="color:#1A1A1A;">Team</a></li>
         <li><a href="#trust"
             class="block px-3 py-2.5  text-sm font-semibold transition-colors duration-200 cursor-pointer"
             style="color:#1A1A1A;">Public Trust</a></li>
@@ -1019,6 +1239,191 @@
 
       </div>
     </section>
+
+    <!-- ═══════════════ TEAM BIOS ═══════════════ -->
+    <section id="team" class="pt-24 md:pt-32 pb-16 md:pb-20 px-6 bg-[#FAF9F6] border-t border-zinc-200"
+      aria-labelledby="team-heading">
+      <div class="max-w-7xl mx-auto">
+        <div class="fade-up max-w-4xl mb-12">
+          <h2 id="team-heading" class="font-heading text-4xl md:text-5xl font-extrabold text-zinc-900">
+            Meet the People Carrying the <span class="hl-skew">Vision.</span>
+          </h2>
+        </div>
+
+        <div class="team-grid" role="list">
+          <article class="fade-up" role="listitem">
+            <button type="button" class="team-card-button" data-team-card aria-haspopup="dialog"
+              aria-label="Read bio for Morton Simmonds, President / Land Donor">
+              <span class="team-card-image">
+                <img src="team/Morton-Simmonds.jpg" alt="Portrait of Morton Simmonds" loading="lazy" />
+              </span>
+              <span class="team-card-copy">
+                <span class="team-card-name" data-team-name>Morton Simmonds</span>
+                <span class="team-card-role" data-team-role>President / Land Donor</span>
+                <span class="team-card-cta">Read bio</span>
+              </span>
+              <span hidden data-team-bio>A son of North Preston, Mr. Simmonds is the founder and visionary behind North Preston Outreach Ministry (NPOM). Under his leadership, NPOM has grown from a small group of volunteers into an organization poised to bring real change to North Preston. Mr. Simmonds is a lifelong resident of North Preston, the first African Nova Scotian Correctional Officer in Nova Scotia, and a father, brother, pastor, leader, and gardener. Most of all, he is a child of God.</span>
+            </button>
+          </article>
+
+          <article class="fade-up" role="listitem">
+            <button type="button" class="team-card-button" data-team-card aria-haspopup="dialog"
+              aria-label="Read bio for Delorise Simmonds, Board Member / Land Donor">
+              <span class="team-card-image">
+                <img src="team/Delorise-Simmonds.jpg" alt="Portrait of Delorise Simmonds" loading="lazy" />
+              </span>
+              <span class="team-card-copy">
+                <span class="team-card-name" data-team-name>Delorise Simmonds</span>
+                <span class="team-card-role" data-team-role>Board Member / Land Donor</span>
+                <span class="team-card-cta">Read bio</span>
+              </span>
+              <span hidden data-team-bio>A daughter of North Preston, Mrs. Simmonds, affectionately known as "Mommas," serves as a board member for NPOM, where her main role is to assist the President, attend meetings, and speak as an elder of the community of North Preston. A retired employee of 25 years with the Nova Scotia Hospital, Mrs. Simmonds brings a strong sense of practicality and dedication to this project. A lifelong member of Saint Thomas Baptist Church in North Preston, she brings a leadership style she has demonstrated in her local church choir, women's group, and family. She created NPOM with the belief that her community deserves a new generation of suitable, affordable housing.</span>
+            </button>
+          </article>
+
+          <article class="fade-up" role="listitem">
+            <button type="button" class="team-card-button" data-team-card aria-haspopup="dialog"
+              aria-label="Read bio for Marko Simmonds, Vice Chair">
+              <span class="team-card-image">
+                <img src="team/Marko-Simmonds.jpg" alt="Portrait of Marko Simmonds" loading="lazy" />
+              </span>
+              <span class="team-card-copy">
+                <span class="team-card-name" data-team-name>Marko Simmonds</span>
+                <span class="team-card-role" data-team-role>Vice Chair</span>
+                <span class="team-card-cta">Read bio</span>
+              </span>
+              <span hidden data-team-bio>A son of North Preston, Marko serves as Vice Chair of NPOM, where his primary role is to assist the President, board members, and NPOM employees with the organization's day-to-day operations. With over 20 years as an entrepreneur in the music industry and 4 years as a lawyer, Marko brings extensive experience in leadership and collaboration, which is vital to NPOM's success. He joined NPOM because, for him, it is about the legacy of family and community, for generations to come.</span>
+            </button>
+          </article>
+
+          <article class="fade-up" role="listitem">
+            <button type="button" class="team-card-button" data-team-card aria-haspopup="dialog"
+              aria-label="Read bio for Mc'Edward Jones, Treasurer">
+              <span class="team-card-image">
+                <img src="team/Mc'Edward-Jones.jpg" alt="Portrait of Mc'Edward Jones" loading="lazy" />
+              </span>
+              <span class="team-card-copy">
+                <span class="team-card-name" data-team-name>Mc'Edward Jones</span>
+                <span class="team-card-role" data-team-role>Treasurer</span>
+                <span class="team-card-cta">Read bio</span>
+              </span>
+              <span hidden data-team-bio>A son of Sierra Leone, Mc'Edward brings with him the stories of our cousins from Freetown, Sierra Leone, Africa. He serves as the Treasurer of NPOM, where his main role is to ensure accurate financial reporting, develop strategic budgets, maintain robust internal controls, and comply with CRA standards. Mc'Edward has over 10 years of experience in accounting and financial management, payroll, human resources, and business administration. He joins NPOM because of its potential to change the face of Nova Scotia and the African Nova Scotian community.</span>
+            </button>
+          </article>
+
+          <article class="fade-up" role="listitem">
+            <button type="button" class="team-card-button" data-team-card aria-haspopup="dialog"
+              aria-label="Read bio for Antifa McDonald, Executive Communications">
+              <span class="team-card-image">
+                <img src="team/Antifa-McDonald.jpg" alt="Portrait of Antifa McDonald" loading="lazy" />
+              </span>
+              <span class="team-card-copy">
+                <span class="team-card-name" data-team-name>Antifa McDonald</span>
+                <span class="team-card-role" data-team-role>Executive Communications</span>
+                <span class="team-card-cta">Read bio</span>
+              </span>
+              <span hidden data-team-bio>A daughter of North Preston, Antifa serves as Executive Communications for NPOM, where her main role is to ensure accurate reporting of meetings and communications among all board members. Dedicated and passionate about her community, Antifa brings a level of detail that continues to push NPOM to greater heights. Antifa has earned her Bachelor of Arts degree in Human Rights and Equity Studies from York University in Toronto. She joined NPOM simply because she believes this vision will become reality and wants to be part of it.</span>
+            </button>
+          </article>
+
+          <article class="fade-up" role="listitem">
+            <button type="button" class="team-card-button" data-team-card aria-haspopup="dialog"
+              aria-label="Read bio for LaMeia Reddick, Community Liaison">
+              <span class="team-card-image">
+                <img src="team/LaMeia-Reddick.jpg" alt="Portrait of LaMeia Reddick" loading="lazy" />
+              </span>
+              <span class="team-card-copy">
+                <span class="team-card-name" data-team-name>LaMeia Reddick</span>
+                <span class="team-card-role" data-team-role>Community Liaison</span>
+                <span class="team-card-cta">Read bio</span>
+              </span>
+              <span hidden data-team-bio>A daughter of North Preston, LaMeia serves as the Community Liaison for NPOM, where her primary role is to help build bridges between the NPOM Board and residents of North Preston, as well as the wider Black communities of the Preston township and Nova Scotia. With over 20 years of experience in community engagement, LaMeia works to bring new ideas to life. Her creativity and passion for community economic development, planning, and holistic design benefit NPOM as she assists with community engagement in the days ahead. She joins NPOM to continue giving back to her community in a tangible way.</span>
+            </button>
+          </article>
+
+          <article class="fade-up" role="listitem">
+            <button type="button" class="team-card-button" data-team-card aria-haspopup="dialog"
+              aria-label="Read bio for Marqeis Williams, Creative Expert, Board Member">
+              <span class="team-card-image">
+                <img src="team/Marqeis-Williams.jpg" alt="Portrait of Marqeis Williams" loading="lazy" />
+              </span>
+              <span class="team-card-copy">
+                <span class="team-card-name" data-team-name>Marqeis Williams</span>
+                <span class="team-card-role" data-team-role>Creative Expert, Board Member</span>
+                <span class="team-card-cta">Read bio</span>
+              </span>
+              <span hidden data-team-bio>A son of North Preston, Marqeis "KekeBeatz" serves as the resident creative and media technician for NPOM, where his primary role is to lead the development of NPOM's logo and branding, video content, and creative input for community engagements. As an artist, producer, sound engineer, and experienced videographer, Marqeis brings more than 16 years of creative experience to NPOM. He joined NPOM because of his vision for new housing in his community. Thank you for seeing the vision.</span>
+            </button>
+          </article>
+
+          <article class="fade-up" role="listitem">
+            <button type="button" class="team-card-button" data-team-card aria-haspopup="dialog"
+              aria-label="Read bio for Stephanie Downey-Saunders, Board Member">
+              <span class="team-card-image">
+                <img src="team/Stephanie-Downey-Saunders.jpg" alt="Portrait of Stephanie Downey-Saunders"
+                  loading="lazy" />
+              </span>
+              <span class="team-card-copy">
+                <span class="team-card-name" data-team-name>Stephanie Downey-Saunders</span>
+                <span class="team-card-role" data-team-role>Board Member</span>
+                <span class="team-card-cta">Read bio</span>
+              </span>
+              <span hidden data-team-bio>A daughter of North Preston, Stephanie serves as a board member for NPOM, where her main role is to assist with meetings and speak as a community member. Stephanie's presence serves to guide the conversation so that the community is heard. With over 14 years of experience with the Halifax Regional School Board, Stephanie brings a strong sense of community and a direct connection to those this project seeks to serve: the elders, the single parent, and the young student. She joins NPOM because she shares the vision of creating new, suitable, and affordable housing for her community, built by her people.</span>
+            </button>
+          </article>
+
+          <article class="fade-up" role="listitem">
+            <button type="button" class="team-card-button" data-team-card aria-haspopup="dialog"
+              aria-label="Read bio for Renise Cain, Board Member">
+              <span class="team-card-image">
+                <img src="team/Renise-Cain.jpg" alt="Portrait of Renise Cain" loading="lazy" />
+              </span>
+              <span class="team-card-copy">
+                <span class="team-card-name" data-team-name>Renise Cain</span>
+                <span class="team-card-role" data-team-role>Board Member</span>
+                <span class="team-card-cta">Read bio</span>
+              </span>
+              <span hidden data-team-bio>A daughter of North Preston, Renise serves as a board member for NPOM, where her main role is to assist with planning community events, support meetings, and speak as a community member. With 12 years of experience, Renise has led initiatives in adult and youth programming in Preston Township and received the Halifax Public Libraries Staff Innovation and Impact Award in 2019. As Chair of the Student Advisory Council at Nelson Whynder Elementary School, Renise brings expertise in community engagement, leadership, and teamwork to the NPOM Board. She joins NPOM with the belief that suitable and affordable housing can be a reality in her community's future.</span>
+            </button>
+          </article>
+
+          <article class="fade-up" role="listitem">
+            <button type="button" class="team-card-button" data-team-card aria-haspopup="dialog"
+              aria-label="Read bio for Emmanuel Itiveh, Strategic Consultant">
+              <span class="team-card-image">
+                <img src="team/Emmanuel-Itiveh.jpg" alt="Portrait of Emmanuel Itiveh" loading="lazy" />
+              </span>
+              <span class="team-card-copy">
+                <span class="team-card-name" data-team-name>Emmanuel Itiveh</span>
+                <span class="team-card-role" data-team-role>Strategic Consultant</span>
+                <span class="team-card-cta">Read bio</span>
+              </span>
+              <span hidden data-team-bio>A son of Delta State, Nigeria, Emmanuel serves as a Senior Advisor and Strategist to the President and Vice Chair. Additionally, Emmanuel has been instrumental in securing new funding and optimizing NPOM's operations and systems. With 16+ years in leadership roles at BBI, the Nova Scotia Provincial Government, and Bell Aliant/Bell Canada, Emmanuel brings to NPOM a level of professionalism that is essential as the organization forges ahead to complete this monumental project. He joins NPOM with a strong belief in the vision and a desire to work with the community.</span>
+            </button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div id="team-modal" class="team-modal" role="dialog" aria-modal="true" aria-labelledby="team-modal-title"
+      aria-describedby="team-modal-bio" hidden>
+      <div class="team-modal-backdrop" data-team-close></div>
+      <div class="team-modal-panel" role="document">
+        <button type="button" class="team-modal-close" data-team-close aria-label="Close team member bio">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        <div class="team-modal-media">
+          <img id="team-modal-image" alt="" />
+        </div>
+        <div class="team-modal-copy">
+          <p id="team-modal-role" class="team-modal-role"></p>
+          <h3 id="team-modal-title" class="team-modal-title"></h3>
+          <p id="team-modal-bio" class="team-modal-bio"></p>
+        </div>
+      </div>
+    </div>
 
     <!-- ═══════════════ PUBLIC TRUST & FAQ ═══════════════ -->
     <section id="trust" class="grid-lav py-24 md:py-32 px-6" aria-labelledby="trust-heading">
@@ -1885,6 +2290,9 @@
             <li><a href="#legacy"
                 class="text-sm text-zinc-600 hover:text-[#793518] transition-colors duration-200 cursor-pointer">Our
                 Legacy</a></li>
+            <li><a href="#team"
+                class="text-sm text-zinc-600 hover:text-[#793518] transition-colors duration-200 cursor-pointer">Team</a>
+            </li>
             <li><a href="#trust"
                 class="text-sm text-zinc-600 hover:text-[#793518] transition-colors duration-200 cursor-pointer">Public
                 Trust</a></li>
@@ -1957,6 +2365,84 @@
       document.querySelectorAll('.fade-up').forEach(el => {
         if (el.getBoundingClientRect().top < vh * 0.92) { el.classList.add('visible'); }
         else { observer.observe(el); }
+      });
+    })();
+
+    (function setupTeamModal() {
+      const modal = document.getElementById('team-modal');
+      if (!modal) return;
+
+      const modalImage = document.getElementById('team-modal-image');
+      const modalTitle = document.getElementById('team-modal-title');
+      const modalRole = document.getElementById('team-modal-role');
+      const modalBio = document.getElementById('team-modal-bio');
+      const closeButton = modal.querySelector('.team-modal-close');
+      const closeTargets = modal.querySelectorAll('[data-team-close]');
+      const focusableSelector = 'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+      let activeTrigger = null;
+
+      function getFocusableElements() {
+        return Array.from(modal.querySelectorAll(focusableSelector))
+          .filter(element => element.offsetParent !== null);
+      }
+
+      function openModal(card) {
+        const image = card.querySelector('img');
+        const name = card.querySelector('[data-team-name]').textContent.trim();
+        const role = card.querySelector('[data-team-role]').textContent.trim();
+        const bio = card.querySelector('[data-team-bio]').textContent.trim();
+
+        activeTrigger = card;
+        modalImage.src = image.getAttribute('src');
+        modalImage.alt = image.getAttribute('alt') || `Portrait of ${name}`;
+        modalTitle.textContent = name;
+        modalRole.textContent = role;
+        modalBio.textContent = bio;
+        modal.hidden = false;
+        document.body.classList.add('team-modal-open');
+        closeButton.focus();
+      }
+
+      function closeModal() {
+        modal.hidden = true;
+        document.body.classList.remove('team-modal-open');
+        modalImage.removeAttribute('src');
+        if (activeTrigger) activeTrigger.focus();
+        activeTrigger = null;
+      }
+
+      document.querySelectorAll('[data-team-card]').forEach(card => {
+        card.addEventListener('click', () => openModal(card));
+      });
+
+      closeTargets.forEach(target => {
+        target.addEventListener('click', closeModal);
+      });
+
+      document.addEventListener('keydown', event => {
+        if (modal.hidden) return;
+
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          closeModal();
+          return;
+        }
+
+        if (event.key !== 'Tab') return;
+
+        const focusableElements = getFocusableElements();
+        if (!focusableElements.length) return;
+
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (event.shiftKey && document.activeElement === firstElement) {
+          event.preventDefault();
+          lastElement.focus();
+        } else if (!event.shiftKey && document.activeElement === lastElement) {
+          event.preventDefault();
+          firstElement.focus();
+        }
       });
     })();
 
