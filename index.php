@@ -1,3 +1,21 @@
+<?php
+$npomProtocol = 'http';
+if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
+    $npomProtocol = trim(explode(',', (string) $_SERVER['HTTP_X_FORWARDED_PROTO'])[0]);
+} elseif (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
+    $npomProtocol = 'https';
+}
+
+$npomHost = (string) ($_SERVER['HTTP_HOST'] ?? 'localhost');
+$npomOrigin = $npomProtocol . '://' . $npomHost;
+$npomShareUrl = $npomOrigin . '/';
+$npomShareImage = $npomOrigin . '/npom-logo.png?v=2';
+
+function npom_attr(string $value): string
+{
+    return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,6 +25,24 @@
   <title>NPOM — North Preston Outreach Ministry</title>
   <meta name="description"
     content="North Preston Outreach Ministry is working toward affordable, accessible, suitable, and assisted housing for Preston residents." />
+  <link rel="canonical" href="<?= npom_attr($npomShareUrl) ?>" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="North Preston Outreach Ministry" />
+  <meta property="og:title" content="NPOM — North Preston Outreach Ministry" />
+  <meta property="og:description"
+    content="North Preston Outreach Ministry is working toward affordable, accessible, suitable, and assisted housing for Preston residents." />
+  <meta property="og:url" content="<?= npom_attr($npomShareUrl) ?>" />
+  <meta property="og:image" content="<?= npom_attr($npomShareImage) ?>" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="459" />
+  <meta property="og:image:height" content="460" />
+  <meta property="og:image:alt" content="North Preston Outreach Ministry logo" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="NPOM — North Preston Outreach Ministry" />
+  <meta name="twitter:description"
+    content="North Preston Outreach Ministry is working toward affordable, accessible, suitable, and assisted housing for Preston residents." />
+  <meta name="twitter:image" content="<?= npom_attr($npomShareImage) ?>" />
+  <meta name="twitter:image:alt" content="North Preston Outreach Ministry logo" />
   <link rel="icon" href="favicon.ico?v=2" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=2" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png?v=2" />
