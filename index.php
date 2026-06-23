@@ -9,7 +9,7 @@ if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
 $npomHost = (string) ($_SERVER['HTTP_HOST'] ?? 'localhost');
 $npomOrigin = $npomProtocol . '://' . $npomHost;
 $npomShareUrl = $npomOrigin . '/';
-$npomShareImage = $npomOrigin . '/npom-logo.png?v=2';
+$npomShareImage = $npomOrigin . '/npom-logo.jpg?v=2';
 
 function npom_attr(string $value): string
 {
@@ -33,11 +33,11 @@ function npom_attr(string $value): string
     content="North Preston Outreach Ministry is working toward affordable, accessible, suitable, and assisted housing for Preston residents." />
   <meta property="og:url" content="<?= npom_attr($npomShareUrl) ?>" />
   <meta property="og:image" content="<?= npom_attr($npomShareImage) ?>" />
-  <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:width" content="459" />
-  <meta property="og:image:height" content="460" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="North Preston Outreach Ministry logo" />
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="NPOM — North Preston Outreach Ministry" />
   <meta name="twitter:description"
     content="North Preston Outreach Ministry is working toward affordable, accessible, suitable, and assisted housing for Preston residents." />
