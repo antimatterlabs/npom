@@ -2042,6 +2042,36 @@ function npom_attr(string $value): string
         <!-- Events List -->
         <div class="fade-up space-y-12">
           <div>
+            <h3 class="font-heading text-2xl md:text-3xl font-extrabold text-black mb-2">June 2026</h3>
+            <div class="divide-y divide-zinc-200">
+              <!-- Event 0 -->
+              <div class="py-8 grid md:grid-cols-[190px_1fr_280px] gap-6 items-start animate-fade-in">
+                <div class="flex flex-col">
+                  <span class="text-xl font-extrabold" style="color:#793518;">June 27, 2026</span>
+                  <span class="text-sm font-semibold text-zinc-500 mt-1">Saturday, 11:00 a.m. - 1:00 p.m.</span>
+                </div>
+                <div class="md:pr-8">
+                  <h4 class="font-heading text-xl font-bold text-black mb-2">North Preston Outreach Ministry Community Launch Event / AGM
+                  </h4>
+                  <p class="text-sm text-zinc-650 leading-relaxed">Presented by: North Preston Outreach Ministry. All are welcome.</p>
+                  <div class="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm font-bold">
+                    <a href="https://www.eventbrite.com/e/npom-launch-community-engagement-session-tickets-1990747715005?aff=oddtdtcreator"
+                      target="_blank" rel="noopener" class="text-[#793518] hover:text-black transition-colors">Eventbrite tickets</a>
+                  </div>
+                </div>
+                <div class="event-location">
+                  <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                  <span class="event-location-address">
+                    <span class="event-location-venue">North Preston Recreation Center</span>
+                    <span class="event-location-street">44 Simmonds Road</span>
+                    <span class="event-location-place">North Preston, Nova Scotia</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
             <h3 class="font-heading text-2xl md:text-3xl font-extrabold text-black mb-2">July 2026</h3>
             <div class="divide-y divide-zinc-200">
               <!-- Event 1 -->
