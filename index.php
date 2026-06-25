@@ -2048,7 +2048,8 @@ function npom_attr(string $value): string
               <div class="py-8 grid md:grid-cols-[190px_1fr_280px] gap-6 items-start animate-fade-in">
                 <div class="flex flex-col">
                   <span class="text-xl font-extrabold" style="color:#793518;">June 27, 2026</span>
-                  <span class="text-sm font-semibold text-zinc-500 mt-1">Saturday, 11:00 a.m. - 1:00 p.m.</span>
+                  <span class="text-sm font-semibold text-zinc-500 mt-1">Saturday</span>
+                  <span class="text-sm font-semibold text-zinc-500 mt-1">11:00 a.m. - 1:00 p.m.</span>
                 </div>
                 <div class="md:pr-8">
                   <h4 class="font-heading text-xl font-bold text-black mb-2">North Preston Outreach Ministry Community Launch Event / AGM
